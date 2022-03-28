@@ -1,4 +1,4 @@
-package Config;
+package com.jannlouie.Config;
 
 public class LinkedList<T> {
     class NodeList<E> {

@@ -1,4 +1,4 @@
-package Config;
+package com.jannlouie.Config;
 
 import java.util.Scanner;
 
@@ -70,9 +70,5 @@ public class Student extends HumanData {
     @Override
     public String toString() {
         return "Name: " + this.name + "\nID: " + this.id + "\n";
-    }
-
-    protected void finalize() {
-        scanner.close();
     }
 }

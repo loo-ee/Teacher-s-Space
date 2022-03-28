@@ -1,6 +1,8 @@
+package com.jannlouie;
+
+import com.jannlouie.Config.*;
 import java.util.Scanner;
 
-import Config.*;
 
 public class App {
     public static void main(String[] args) throws Exception {

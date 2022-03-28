@@ -1,4 +1,4 @@
-package Config;
+package com.jannlouie.Config;
 
 public class HumanData {
     String name, email;

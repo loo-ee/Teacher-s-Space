@@ -1,7 +1,8 @@
-import Config.*;
+package com.jannlouie;
+
+import com.jannlouie.Config.*;
 
 import java.util.Scanner;
-import Config.LinkedList;
 
 public class Tester {
     public static void main(String[] args) {

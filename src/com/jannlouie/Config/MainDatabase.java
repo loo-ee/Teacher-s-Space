@@ -1,4 +1,4 @@
-package Config;
+package com.jannlouie.Config;
 
 import java.util.Scanner;
 
@@ -102,9 +102,5 @@ public class MainDatabase {
     public void showTeachersDataBase() {
         System.out.println("\n[STUDENTS' MAIN DATABASE]");
         teacherRootDirectory.displayListContents();
-    }
-
-    protected void finalize() {
-        scanner.close();
     }
 }
