@@ -1,0 +1,78 @@
+package Config;
+
+import java.util.Scanner;
+
+public class Student extends HumanData {
+    String course;
+    int id, yearLevel, units = 0;
+    int[] grades;
+
+    Scanner scanner = new Scanner(System.in);
+
+    public Student(String name, String email, int id, int age) {
+        super(name, age, email);
+        this.id = id;
+    }
+
+    public void setStudentInfo() {
+        System.out.print("\nEnter your course: ");
+        this.course = scanner.nextLine();
+        System.out.print("Enter your year level: ");
+        this.yearLevel = scanner.nextInt();
+        scanner.nextLine();
+    }
+
+    public void inputGrades(int howManyGrades) {
+        grades = new int[howManyGrades];
+
+        for (int i = 0; i<howManyGrades; i++) {
+            System.out.print("Enter grade #" + (i+1) + ": ");
+            grades[i] = scanner.nextInt();
+        }
+        scanner.nextLine();
+    }
+
+    public int[] getGrades() {
+        return this.grades;
+    }
+
+    public void showGrades() {
+        System.out.println("\nShowing grades...");
+
+        for (int i = 0; i < this.grades.length; i++) {
+            System.out.print("Grade #" + (i+1) + ": " + this.grades[i] + "\n");
+        }
+    }
+
+    public float getGradeAverage() {
+        float average = 0;
+
+        for (int i = 0; i < this.grades.length; i++) {
+            average += (float)this.grades[i];
+        }
+        average /= (float)this.grades.length;
+        return average;
+    }
+
+    public void studentGraduateFromSubject() {
+        
+    }
+
+    public void showStudentData() {
+        System.out.println("Name: \t" + this.name);
+        System.out.println("Age: \t" + this.age);
+        System.out.println("ID: \t" + this.id);
+        System.out.println("Email: \t" + this.email);
+        System.out.println("Course: " + this.course);
+        System.out.println("Year Level: " + this.yearLevel);
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + this.name + "\nID: " + this.id + "\n";
+    }
+
+    protected void finalize() {
+        scanner.close();
+    }
+}
