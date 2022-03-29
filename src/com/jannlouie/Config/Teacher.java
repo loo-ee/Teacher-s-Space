@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Teacher extends HumanData{
     String subjectCourse;
-    LinkedList<Student> classRecord = new LinkedList<Student>();
+    LinkedList<Student> classRecord = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
     public Teacher(String name, int age, String email, String subjectCourse) {
@@ -23,7 +23,7 @@ public class Teacher extends HumanData{
     }
 
     public void removeStudent() {
-        Student luckyStudent = null;
+        Student luckyStudent;
         String toStringEquivalent;
 
         showStudentsUnderTeacher();
@@ -43,7 +43,7 @@ public class Teacher extends HumanData{
     }
 
     public void expandStudentsInfo() {
-        Student studentPtr = null;
+        Student studentPtr;
 
         for (int i=0; i<classRecord.getListSize(); i++) {
             studentPtr = classRecord.returnNode(i);

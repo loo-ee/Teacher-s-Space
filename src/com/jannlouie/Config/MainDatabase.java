@@ -30,7 +30,7 @@ public class MainDatabase {
     }
 
     public void removeStudent() {
-        Student luckystudent = null;
+        Student luckyStudent;
         String toStringEquivalent;
 
         System.out.print("\nEnter name of student to remove: ");
@@ -40,13 +40,13 @@ public class MainDatabase {
         toStringEquivalent = "Name: " + studentName + "\nID: " + studentID + "\n";
 
         if (studentRootDirectory.validateNode(toStringEquivalent)) {
-            luckystudent = studentRootDirectory.returnNode(toStringEquivalent);
-            studentRootDirectory.deleteNode(luckystudent);
+            luckyStudent = studentRootDirectory.returnNode(toStringEquivalent);
+            studentRootDirectory.deleteNode(luckyStudent);
         }
     }
 
     public void showStudentsDatabase() {
-        Student studentPtr = null;
+        Student studentPtr;
 
         System.out.println("\n[STUDENTS' MAIN DATABASE]");
         
@@ -58,7 +58,7 @@ public class MainDatabase {
     }
 
     public void showTeachersDatabase() {
-        Teacher teacherPtr = null;
+        Teacher teacherPtr;
 
         System.out.println("\n[TEACHERS' MAIN DATABASE]");
 
@@ -87,7 +87,7 @@ public class MainDatabase {
     }
 
     public void removeTeacher() {
-        Teacher luckyTeacher = null;
+        Teacher luckyTeacher;
         String toStringEquivalent;
 
         System.out.print("\nEnter name of teacher to remove: ");
