@@ -129,10 +129,10 @@ public class BettingGame {
         int top1 =0;
         int sum = 0;
 
-        System.out.println("Displaying overall results...");
+        System.out.println("\nDisplaying overall results...");
 
         for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
-            System.out.println(players[currentPlayer].getName() + "' points: " + players[currentPlayer].getPoints());
+            System.out.println(players[currentPlayer].getName() + "'s points: " + players[currentPlayer].getPoints());
         }
 
         System.out.println("The overall winner is: ");
