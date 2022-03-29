@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class Student extends HumanData {
     String course;
-    int id, yearLevel, units = 0;
+    int id;
+    int yearLevel;
     int[] grades;
 
     Scanner scanner = new Scanner(System.in);
@@ -47,15 +48,11 @@ public class Student extends HumanData {
     public float getGradeAverage() {
         float average = 0;
 
-        for (int i = 0; i < this.grades.length; i++) {
-            average += (float)this.grades[i];
+        for (int grade : this.grades) {
+            average += (float) grade;
         }
         average /= (float)this.grades.length;
         return average;
-    }
-
-    public void studentGraduateFromSubject() {
-        
     }
 
     public void showStudentData() {

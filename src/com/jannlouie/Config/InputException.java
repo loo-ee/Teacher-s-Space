@@ -1,7 +1,8 @@
 package com.jannlouie.Config;
 
 public class InputException extends Exception {
-    String errorValue, message;
+    private String errorValue;
+    private String message;
 
     public InputException(String message, String errorValue) {
             super(message);
