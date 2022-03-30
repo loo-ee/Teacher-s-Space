@@ -3,12 +3,12 @@ package com.jannlouie.Game;
 import java.util.Random;
 
 public class Die {
-    private int sides = 6;
+    private final int sides = 6;
     private int value = 0;
 
-    private Random random = new Random();
+    private final Random random = new Random();
 
-    Die() {}
+    public Die() {}
 
     public void roll() {
         final int minVal = 1;

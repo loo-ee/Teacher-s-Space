@@ -1,14 +1,15 @@
 package com.jannlouie.Config;
 
 public class LinkedList<T> {
-    class NodeList<E> {
-        E element;
-        NodeList<E> next;
+    private class NodeList<E> {
+        private E element;
+        private NodeList<E> next;
 
-        NodeList() {}
+        private NodeList() {}
     }
-    NodeList<T> head = new NodeList<>();
-    String course;
+
+    private NodeList<T> head = new NodeList<>();
+    private String course;
 
     public LinkedList() {
         head = null;
@@ -20,7 +21,7 @@ public class LinkedList<T> {
 
     public void appendList(T val) {
         NodeList<T> newNode;
-        NodeList<T> nodePtr;
+        NodeList<T> nodePtr = head;
 
         newNode = new NodeList<T>();
         newNode.element = val;
@@ -30,8 +31,6 @@ public class LinkedList<T> {
             head = newNode;
         }
         else {
-            nodePtr = head;
-
             while (nodePtr.next != null) {
                 nodePtr = nodePtr.next;
             }
@@ -40,14 +39,14 @@ public class LinkedList<T> {
     }
 
     public T returnNode(int index) {
-        NodeList<T> nodePtr = null;
+        NodeList<T> nodePtr = head;
         NodeList<T> previousNode = null;
-        nodePtr = head;
 
         for (int i = 0; i <index+1; i++) {
             previousNode = nodePtr;
             nodePtr = nodePtr.next;
         }
+        assert previousNode != null;
         return previousNode.element;
     }
 
@@ -61,6 +60,7 @@ public class LinkedList<T> {
             if (nodeHolder.compareTo(toString) == 0) {
                 targetElement = nodePtr.element;
             }
+            nodePtr = nodePtr.next;
         }
         return targetElement;
     }
@@ -68,7 +68,7 @@ public class LinkedList<T> {
     public void insertList(int index, T val) {
         NodeList<T> nodePtr;
         NodeList<T> previousNode;
-        NodeList<T> newNode = new NodeList<T>();
+        NodeList<T> newNode = new NodeList<>();
 
         newNode.element = val;
         newNode.next = null;
@@ -91,9 +91,9 @@ public class LinkedList<T> {
     }
 
     public void insertList(T val) {
-        NodeList<T> nodePtr = null;
+        NodeList<T> nodePtr = head;
         NodeList<T> previousNode = null;
-        NodeList<T> newNode = new NodeList<T>();
+        NodeList<T> newNode = new NodeList<>();
         boolean onLoop = true;
 
         newNode.element = val;
@@ -101,12 +101,8 @@ public class LinkedList<T> {
 
         if (head == null) {
             head = newNode;
-            newNode.next = null;
         }
         else {
-            nodePtr = head;
-            previousNode = null;
-
             while (nodePtr != null && onLoop) {
                 String elementHolder = nodePtr.element.toString();
                 String valHolder = val.toString();
@@ -122,27 +118,21 @@ public class LinkedList<T> {
 
             if (previousNode == null) {
                 head = newNode;
-                newNode.next = nodePtr;
             }
             else {
                 previousNode.next = newNode;
-                newNode.next = nodePtr;
             }
+            newNode.next = nodePtr;
         }
     }
 
     public boolean checkIfNull() {
-        if (head == null) {
-            return true;
-        }
-        return false;
+        return head == null;
     }
 
     public int getListSize() {
-        NodeList<T> nodePtr = null;
+        NodeList<T> nodePtr = head;
         int size = 0;
-
-        nodePtr = head;
 
         while(nodePtr != null) {
             size += 1;
@@ -152,15 +142,13 @@ public class LinkedList<T> {
     }
 
     public void displayListContents() {
-        NodeList<T> nodePtr = null;
+        NodeList<T> nodePtr = head;
         int counter = 1;
 
         if (head == null) {
             System.out.println("\nNO DATA");
             return;
         }
-
-        nodePtr = head;
 
         while (nodePtr != null) {
             System.out.println("Student #" + (counter++) + ":\n" + nodePtr.element);
@@ -190,14 +178,13 @@ public class LinkedList<T> {
     }
 
     public boolean validateNode(String name) {
-        NodeList<T> nodePtr = null;
-
-        nodePtr = head;
+        NodeList<T> nodePtr = head;
 
         while (nodePtr != null) {
             if (nodePtr.element.toString().compareTo(name) == 0) {
                 return true;
             }
+            nodePtr = nodePtr.next;
         }
         return false;
     }
