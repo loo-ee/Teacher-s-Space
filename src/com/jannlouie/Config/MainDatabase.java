@@ -3,18 +3,19 @@ package com.jannlouie.Config;
 import java.util.Scanner;
 
 public class MainDatabase {
-    LinkedList<Student> studentRootDirectory  = new LinkedList<>();
-    LinkedList<Teacher> teacherRootDirectory = new LinkedList<>();
-    Scanner scanner = new Scanner(System.in);
-    String dataBaseName;
-    int studentCount = 0;
+    private static LinkedList<Student> studentRootDirectory  = new LinkedList<>();
+    private static LinkedList<Teacher> teacherRootDirectory = new LinkedList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static String dataBaseName;
+    private static int studentCount = 0;
 
-    public MainDatabase(String name) {
-        this.dataBaseName = name;
+     MainDatabase(String name) {
+        dataBaseName = name;
     }
 
-    public void addStudentToRoot() {
-        String name, email;
+    public static void addStudentToRoot() {
+        String name;
+        String email;
         int age;
 
         System.out.print("\nEnter name of student: ");
@@ -29,7 +30,7 @@ public class MainDatabase {
         studentRootDirectory.insertList(newStudent);
     }
 
-    public void removeStudent() {
+    public static void removeStudent() {
         Student luckyStudent;
         String toStringEquivalent;
 
@@ -45,7 +46,7 @@ public class MainDatabase {
         }
     }
 
-    public void showStudentsDatabase() {
+    public static void showStudentsDatabase() {
         Student studentPtr;
 
         System.out.println("\n[STUDENTS' MAIN DATABASE]");
@@ -57,7 +58,7 @@ public class MainDatabase {
         }
     }
 
-    public void showTeachersDatabase() {
+    public static void showTeachersDatabase() {
         Teacher teacherPtr;
 
         System.out.println("\n[TEACHERS' MAIN DATABASE]");
@@ -69,7 +70,7 @@ public class MainDatabase {
         }
     }
 
-    public void addTeacherToRoot() {
+    public static void addTeacherToRoot() {
         String name, email, subjectCourse;
         int age;
 
@@ -86,7 +87,7 @@ public class MainDatabase {
         teacherRootDirectory.insertList(newTeacher);
     }
 
-    public void removeTeacher() {
+    public static void removeTeacher() {
         Teacher luckyTeacher;
         String toStringEquivalent;
 
@@ -99,7 +100,7 @@ public class MainDatabase {
         }
     }
     
-    public void showTeachersDataBase() {
+    public static void showTeachersDataBase() {
         System.out.println("\n[STUDENTS' MAIN DATABASE]");
         teacherRootDirectory.displayListContents();
     }

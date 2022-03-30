@@ -1,8 +1,9 @@
 package com.jannlouie.Config;
 
 public class HumanData {
-    String name, email;
-    int age;
+    protected String name;
+    protected String email;
+    protected int age;
 
     public HumanData(String name, int age, String email) {
         this.name = name;

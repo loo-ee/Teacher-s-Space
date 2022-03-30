@@ -5,17 +5,15 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class BettingGame {
-    private static Dealer dealer = new Dealer();
+    private static final Dealer dealer = new Dealer();
     private static Player[] players;
     private static int maxTurns = 0;
     private static int points = 0;
     private static int howManyPlayers = 0;
-    private static String playerName;
-    private static char reload;
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public static void Run(boolean status) throws Exception {
+    public static void run(boolean status) throws Exception {
         boolean onLoop = true;
 
         if (status) {
@@ -35,7 +33,7 @@ public class BettingGame {
 
             for (int i = 0; i < howManyPlayers; i++) {
                 System.out.print("Enter a name for player #" + (i+1) + ": ");
-                playerName = scanner.nextLine();
+                String playerName = scanner.nextLine();
                 players[i] = new Player(playerName);
             }
 
@@ -80,28 +78,40 @@ public class BettingGame {
         displayOverallResult();
 
         do {
-            System.out.print("\nPress [R] to reset game, [A] to play again: ");
-            reload = scanner.next().charAt(0);
+            System.out.println("\nPress [R] to reset game\nPress [A] to play again\nPress [E] to exit");
+            System.out.print("Enter choice: ");
+            char reload = scanner.next().charAt(0);
             reload = Character.toLowerCase(reload);
 
-            if (reload == 'r') {
-                for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
-                    players[currentPlayer] = null;
+            switch (reload) {
+                case 'r' -> {
+                    for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
+                        players[currentPlayer] = null;
+                    }
+                    onLoop = false;
+                    System.out.println();
+                    run(true);
                 }
-                System.out.println();
-                Run(true);
-            }
-            else if (reload == 'a') {
-                Run(false);
-            }
-            else {
-                System.out.println("You have entered an invalid input. Please try again.");
-                onLoop = true;
+                case 'a' -> {
+                    onLoop = false;
+                    run(false);
+                }
+                case 'e' -> {
+                    for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
+                        players[currentPlayer] = null;
+                    }
+                    onLoop = false;
+                    System.out.println("\nThank you for playing!");
+                }
+                default -> {
+                    System.out.println("You have entered an invalid input. Please try again.");
+                    onLoop = true;
+                }
             }
         } while (onLoop);
     }
 
-    public static void roundResult() {
+    private static void roundResult() {
         System.out.println("\nDisplaying results...");
         System.out.println("Die 1: " + dealer.getDie1Value());
         System.out.println("Die 2: " + dealer.getDie2Value());
@@ -113,7 +123,7 @@ public class BettingGame {
         }
     }
 
-    public static void getGuesses(Player player) {
+    private static void getGuesses(Player player) {
         String guess = player.getGuess();
 
         System.out.println(player.getName() + " guessed " + guess);
@@ -124,8 +134,8 @@ public class BettingGame {
         }
     }
 
-    public static void displayOverallResult() {
-        String winner = "";
+    private static void displayOverallResult() {
+        StringBuilder winner = new StringBuilder();
         int top1 =0;
         int sum = 0;
 
@@ -140,10 +150,10 @@ public class BettingGame {
         for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
             if (players[currentPlayer].getPoints() > top1) {
                 top1 = players[currentPlayer].getPoints();
-                winner = players[currentPlayer].getName();
+                winner = new StringBuilder(players[currentPlayer].getName());
             }
             else if (players[currentPlayer].getPoints() == top1) {
-                winner += " and " + players[currentPlayer].getName();
+                winner.append(" and ").append(players[currentPlayer].getName());
             }
         }
 

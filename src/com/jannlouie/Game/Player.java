@@ -7,9 +7,9 @@ public class Player {
     private String guess = "";
     private int points = 0;
 
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    Player() {}
+    public Player() {}
 
     Player(String n) {
         this.name = n;
@@ -17,7 +17,7 @@ public class Player {
 
     public void makeGuess() {
         char playerGuess;
-        boolean onLoop = false;
+        boolean onLoop;
 
         System.out.println("\nPress [1] for \"Even\" or press [2] for \"Odd\".");
 
@@ -27,12 +27,15 @@ public class Player {
 
             if (playerGuess == '1') {
                 this.guess = "Even";
+                onLoop = false;
             }
             else if (playerGuess == '2') {
                 this.guess = "Odd";
+                onLoop = false;
             }
             else {
                 System.out.println("You have entered an invalid input. Please try again\n");
+                onLoop = true;
             }
         } while (onLoop);
     }

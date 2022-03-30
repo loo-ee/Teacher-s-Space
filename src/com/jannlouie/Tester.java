@@ -1,29 +1,27 @@
 package com.jannlouie;
 
-import com.jannlouie.Config.*;
 import com.jannlouie.Game.BettingGame;
-
-import java.util.Scanner;
+import com.jannlouie.Config.*;
 
 public class Tester {
     public static void main(String[] args) throws Exception {
-        BettingGame.Run(true);
+        BettingGame.run(true);
 
        /*LinkedList<Teacher> teachers = new LinkedList<>();
 
        Teacher teacher1 = new Teacher("A", 20, "@", "Math");
        Teacher teacher2 = new Teacher("B", 20, "@", "Math");
        Teacher teacher3 = new Teacher("C", 20, "@", "Math");
-       
+
         teachers.insertList(teacher1);
         teachers.insertList(teacher2);
         teachers.insertList(teacher3);
         // teachers.displayListContents();
 
         Teacher teacherPtr;
-        
+
         System.out.println("\n[TEACHERS' MAIN DATABASE]");
-        
+
         for (int i=0; i<teachers.getListSize(); i++) {
             System.out.println("\n[Teacher #" + (i+1) + "]");
             teacherPtr = teachers.returnNode(i);
@@ -31,8 +29,8 @@ public class Tester {
         }
 
         teachers.clearList();
-        teachers.displayListContents();
-*/
+        teachers.displayListContents();*/
+
         // teachers.deleteNode(teacher1);
         // teachers.displayListContents();
 

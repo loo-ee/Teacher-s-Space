@@ -1,12 +1,12 @@
 package com.jannlouie.Game;
 
 public class Dealer {
-    private Die die1 = new Die();
-    private Die die2 = new Die();
+    private final Die die1 = new Die();
+    private final Die die2 = new Die();
     private int die1Value = 0;
     private int die2Value = 0;
 
-    Dealer() {}
+    public Dealer() {}
 
     public void rollDice() {
         this.die1.roll();
