@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class MainDatabase {
     private static LinkedList<Student> studentRootDirectory  = new LinkedList<>();
+
+    // TODO -> Delete LinkedList-Teacher if not needed
     private static LinkedList<Teacher> teacherRootDirectory = new LinkedList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static String dataBaseName;
@@ -44,6 +46,19 @@ public class MainDatabase {
             luckyStudent = studentRootDirectory.returnNode(toStringEquivalent);
             studentRootDirectory.deleteNode(luckyStudent);
         }
+    }
+
+    private static boolean validateStudent(String combination) {
+         return studentRootDirectory.validateNode(combination);
+    }
+
+    public static Student getStudentInfo(String name, int id) {
+         if (validateStudent("Name: "+ name+ "\nID: " + id + "\n")) {
+            return studentRootDirectory.returnNode("Name: "+ name+ "\nID: " + id + "\n");
+         }
+
+        System.out.println("[Student not found]");
+         return null;
     }
 
     public static void showStudentsDatabase() {
