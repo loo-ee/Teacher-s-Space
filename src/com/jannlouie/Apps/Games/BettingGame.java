@@ -1,4 +1,4 @@
-package com.jannlouie.Game;
+package com.jannlouie.Apps.Games;
 
 import java.util.InputMismatchException;
 import java.util.Objects;
@@ -13,20 +13,26 @@ public class BettingGame {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void run(boolean status) throws Exception {
+    public static void run(boolean isFirstRun) throws Exception {
         boolean onLoop = true;
 
-        if (status) {
+        if (isFirstRun) {
             do {
+                System.out.print("[HELP] Do you want to show tutorial page?(Y/N): ");
+                char choice = scanner.next().charAt(0);
+                scanner.nextLine();
+
+                if (choice == 'y' || choice == 'Y') {
+                    showTutorial();
+                }
+
                 try {
-                    System.out.print("Enter how many players who wants to play: ");
-                    howManyPlayers = scanner.nextInt();
-                    scanner.nextLine();
+                    System.out.print("\nEnter how many players who wants to play: ");
+                    howManyPlayers = Integer.parseInt(scanner.nextLine());
                     players = new Player[howManyPlayers];
                     onLoop = false;
                 }
-                catch (InputMismatchException e) {
-                    scanner.nextLine();
+                catch (Exception e) {
                     System.out.println("Invalid number! Please try again\n");
                 }
             } while (onLoop);
@@ -167,5 +173,9 @@ public class BettingGame {
         else {
             System.out.println(winner + ". Congrats!");
         }
+    }
+
+    private static void showTutorial() {
+
     }
 }

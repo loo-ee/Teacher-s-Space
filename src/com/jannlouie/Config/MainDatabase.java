@@ -1,5 +1,8 @@
 package com.jannlouie.Config;
 
+import com.jannlouie.FileHandling.Files;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDatabase {
@@ -9,7 +12,7 @@ public class MainDatabase {
     private static LinkedList<Teacher> teacherRootDirectory = new LinkedList<>();
     private static Scanner scanner = new Scanner(System.in);
     private static String dataBaseName;
-    private static int studentCount = 0;
+    private static int currentStudentNumber = 0;
 
      MainDatabase(String name) {
         dataBaseName = name;
@@ -26,15 +29,22 @@ public class MainDatabase {
         email = scanner.nextLine();
         System.out.print("Enter age of student: ");
         age = Integer.parseInt(scanner.nextLine());
-        studentCount++;
+        currentStudentNumber++;
 
-        Student newStudent = new Student(name, email, studentCount, age);
+        Student newStudent = new Student(name, email, currentStudentNumber, age);
         studentRootDirectory.insertList(newStudent);
+
+    }
+
+    public static void addStudentToRoot(Student student) {
+         studentRootDirectory.appendList(student);
     }
 
     public static void removeStudent() {
         Student luckyStudent;
         String toStringEquivalent;
+
+        showStudentsDatabase();
 
         System.out.print("\nEnter name of student to remove: ");
         String studentName = scanner.nextLine();
@@ -45,7 +55,14 @@ public class MainDatabase {
         if (studentRootDirectory.validateNode(toStringEquivalent)) {
             luckyStudent = studentRootDirectory.returnNode(toStringEquivalent);
             studentRootDirectory.deleteNode(luckyStudent);
+            System.out.println("\n[INFO] Record deleted");
+        } else {
+            System.out.println("\n[INFO] Record not found");
         }
+    }
+
+    public static void setCurrentStudentNumber(int currentNumber) {
+         MainDatabase.currentStudentNumber = currentNumber;
     }
 
     private static boolean validateStudent(String combination) {
@@ -57,20 +74,32 @@ public class MainDatabase {
             return studentRootDirectory.returnNode("Name: "+ name+ "\nID: " + id + "\n");
          }
 
-        System.out.println("[Student not found]");
+        System.out.println("\n[Student not found]");
          return null;
     }
 
     public static void showStudentsDatabase() {
         Student studentPtr;
 
-        System.out.println("\n[STUDENTS' MAIN DATABASE]");
-        
-        for (int i=0; i<studentRootDirectory.getListSize(); i++) {
-            System.out.println("\n[Student #" + (i+1) + "]");
-            studentPtr = studentRootDirectory.returnNode(i);
-            studentPtr.showStudentData();
+        System.out.println("\n[SHOWING STUDENT LIST]");
+
+        if (studentRootDirectory.checkIfNull()) {
+            System.out.println("List is empty!");
+        } else {
+            for (int i=0; i<studentRootDirectory.getListSize(); i++) {
+                System.out.println("\n[Student #" + (i+1) + "]");
+                studentPtr = studentRootDirectory.returnNode(i);
+                studentPtr.showStudentData();
+            }
         }
+    }
+
+    public static int getListSize() {
+         return studentRootDirectory.getListSize();
+    }
+
+    public static Student getStudent(int index) {
+         return studentRootDirectory.returnNode(index);
     }
 
     public static void showTeachersDatabase() {
