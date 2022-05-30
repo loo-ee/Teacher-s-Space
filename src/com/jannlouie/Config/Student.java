@@ -6,13 +6,17 @@ public class Student extends HumanData {
     String course;
     int id;
     int yearLevel;
-    int[] grades;
+    float grade = 100;
 
     Scanner scanner = new Scanner(System.in);
 
     public Student(String name, String email, int id, int age) {
         super(name, age, email);
         this.id = id;
+    }
+
+    public void setGrade(float grade) {
+        this.grade = grade;
     }
 
     public void setStudentInfo() {
@@ -23,36 +27,16 @@ public class Student extends HumanData {
         scanner.nextLine();
     }
 
-    public void inputGrades(int howManyGrades) {
-        grades = new int[howManyGrades];
+   public void addGrade(float grade) {
+        this.grade = (this.grade + grade) / 2;
+   }
 
-        for (int i = 0; i<howManyGrades; i++) {
-            System.out.print("Enter grade #" + (i+1) + ": ");
-            grades[i] = scanner.nextInt();
-        }
-        scanner.nextLine();
-    }
+   public int getId() {
+        return this.id;
+   }
 
-    public int[] getGrades() {
-        return this.grades;
-    }
-
-    public void showGrades() {
-        System.out.println("\nShowing grades...");
-
-        for (int i = 0; i < this.grades.length; i++) {
-            System.out.print("Grade #" + (i+1) + ": " + this.grades[i] + "\n");
-        }
-    }
-
-    public float getGradeAverage() {
-        float average = 0;
-
-        for (int grade : this.grades) {
-            average += (float) grade;
-        }
-        average /= (float)this.grades.length;
-        return average;
+    public float getGrade() {
+        return this.grade;
     }
 
     public void showStudentData() {

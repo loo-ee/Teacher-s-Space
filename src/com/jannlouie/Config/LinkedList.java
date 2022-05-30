@@ -9,14 +9,9 @@ public class LinkedList<T> {
     }
 
     private NodeList<T> head = new NodeList<>();
-    private String course;
 
     public LinkedList() {
         head = null;
-    }
-
-    public String getCourse() {
-        return this.course;
     }
 
     public void appendList(T val) {
@@ -177,11 +172,11 @@ public class LinkedList<T> {
         }
     }
 
-    public boolean validateNode(String name) {
+    public boolean validateNode(String combination) {
         NodeList<T> nodePtr = head;
 
         while (nodePtr != null) {
-            if (nodePtr.element.toString().compareTo(name) == 0) {
+            if (nodePtr.element.toString().compareTo(combination) == 0) {
                 return true;
             }
             nodePtr = nodePtr.next;

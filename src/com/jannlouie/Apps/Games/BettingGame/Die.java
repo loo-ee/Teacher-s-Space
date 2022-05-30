@@ -1,4 +1,4 @@
-package com.jannlouie.Game;
+package com.jannlouie.Apps.Games.BettingGame;
 
 import java.util.Random;
 

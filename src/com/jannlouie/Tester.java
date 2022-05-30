@@ -1,61 +1,70 @@
 package com.jannlouie;
 
-import com.jannlouie.Game.BettingGame;
 import com.jannlouie.Config.*;
 
+import java.io.*;
+import java.util.*;
+
 public class Tester {
+    static Vector<String> vector = new Vector<>();
+    static User[] users;
+
     public static void main(String[] args) throws Exception {
-        BettingGame.run(true);
+        readFile();
+        writeFile();
+    }
 
-       /*LinkedList<Teacher> teachers = new LinkedList<>();
+    public static void writeFile() throws Exception {
+        try {
+            File testFile = new File("Texts\\Test File.txt");
+            FileWriter fileWriter = new FileWriter(testFile);
 
-       Teacher teacher1 = new Teacher("A", 20, "@", "Math");
-       Teacher teacher2 = new Teacher("B", 20, "@", "Math");
-       Teacher teacher3 = new Teacher("C", 20, "@", "Math");
+            for (String write: vector) {
+                fileWriter.append(write);
 
-        teachers.insertList(teacher1);
-        teachers.insertList(teacher2);
-        teachers.insertList(teacher3);
-        // teachers.displayListContents();
-
-        Teacher teacherPtr;
-
-        System.out.println("\n[TEACHERS' MAIN DATABASE]");
-
-        for (int i=0; i<teachers.getListSize(); i++) {
-            System.out.println("\n[Teacher #" + (i+1) + "]");
-            teacherPtr = teachers.returnNode(i);
-            teacherPtr.showTeacherData();
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        teachers.clearList();
-        teachers.displayListContents();*/
+    public static void readFile() throws FileNotFoundException {
+        try
+        {
+            File file=new File("D:\\GitHub\\JAVA\\Student-Database-2.0\\src\\com\\jannlouie\\test.txt");    //creates a new file instance
+            FileReader fr= new FileReader(file);   //reads the file
+            BufferedReader br= new BufferedReader(fr);  //creates a buffering character input stream
+            String line;
 
-        // teachers.deleteNode(teacher1);
-        // teachers.displayListContents();
+            String name;
+            String age;
 
-        // Student test = students.returnNode("A");
-        // System.out.print("Name: " + test.getName());
+            int count = 0;
 
-        // LinkedList<Student> students = new LinkedList<>();
+            while((line=br.readLine())!=null) {
 
-        // Student student1 = new Student("A", "@", 1, 19);
-        // Student student2 = new Student("B", "@", 2, 22);
-        // Student student3 = new Student("C", "@", 3, 21);
+                vector.add(line + "\n");
+                count++;
+            }
+            fr.close();    //closes the stream and release the resources
 
-        // students.insertList(student1);
-        // students.insertList(student2);
-        // students.insertList(student3);
+            users = new User[count/2];
 
-        // Student studentPtr = null;
+            for (int i = 0; i < count; i+=2) {
+                name = vector.get(i);
+                age = vector.get(i+1);
 
-        // System.out.println("\n[STUDENTS' MAIN DATABASE]");
-        
-        // for (int i=0; i<students.getListSize(); i++) {
-        //     System.out.println("\n[Student #" + (i+1) + "]");
-        //     studentPtr = students.returnNode(i);
-        //     studentPtr.showStudentData();
-        // }
+                users[i/2] = new User(name, age);
+            }
 
+            for (int i = 0; i < (count/2); i++) {
+                users[i].userInfo();
+            }
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
