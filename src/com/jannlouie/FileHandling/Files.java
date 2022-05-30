@@ -13,9 +13,7 @@ public class Files {
 
     public static void saveData() throws IOException {
         Student student;
-        File file;
         FileWriter fileWriter;
-
         int currentStudentNumber = MainDatabase.getStudent(MainDatabase.getListSize() - 1).getId();
 
         for (int i = 0; i < MainDatabase.getListSize(); i++) {

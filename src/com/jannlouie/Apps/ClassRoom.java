@@ -4,12 +4,7 @@ import com.jannlouie.Config.Exam;
 import com.jannlouie.Config.LinkedList;
 import com.jannlouie.Config.MainDatabase;
 import com.jannlouie.Config.Student;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class ClassRoom {
     private static LinkedList<Exam> examLogs = new LinkedList<>();
@@ -105,18 +100,4 @@ public class ClassRoom {
     public static void addExam(Exam exam) {
         examLogs.appendList(exam);
     }
-
-/*    private static void addExamToLogs() {
-
-        try {
-            File file = new File("Database\\Logs\\Exam Logs.txt");
-            FileWriter fileWriter = new FileWriter(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < examLogs.getListSize(); i++) {
-            examLogs.appendList();
-        }
-    }*/
 }
