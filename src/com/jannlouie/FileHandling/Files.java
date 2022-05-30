@@ -5,6 +5,7 @@ import com.jannlouie.Config.Exam;
 import com.jannlouie.Config.MainDatabase;
 import com.jannlouie.Config.Student;
 import java.io.*;
+import java.util.Objects;
 import java.util.Vector;
 
 public class Files {
@@ -14,6 +15,10 @@ public class Files {
     public static void saveData() throws IOException {
         Student student;
         FileWriter fileWriter;
+
+        if (MainDatabase.isListNull()) {
+            return;
+        }
         int currentStudentNumber = MainDatabase.getStudent(MainDatabase.getListSize() - 1).getId();
 
         for (int i = 0; i < MainDatabase.getListSize(); i++) {
@@ -94,6 +99,11 @@ public class Files {
             bufferedReader = new BufferedReader(fileReader);
 
             line = bufferedReader.readLine();
+
+            if (Objects.equals(line, null)) {
+                return;
+            }
+
             fileReader.close();
             bufferedReader.close();
 

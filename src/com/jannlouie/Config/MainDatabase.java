@@ -91,4 +91,8 @@ public class MainDatabase {
     public static Student getStudent(int index) {
          return studentRootDirectory.returnNode(index);
     }
+
+    public static boolean isListNull()  {
+        return studentRootDirectory.checkIfNull();
+    }
 }
