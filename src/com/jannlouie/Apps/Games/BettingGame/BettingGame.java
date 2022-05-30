@@ -1,4 +1,4 @@
-package com.jannlouie.Apps.Games;
+package com.jannlouie.Apps.Games.BettingGame;
 
 import java.util.InputMismatchException;
 import java.util.Objects;
@@ -151,7 +151,7 @@ public class BettingGame {
             System.out.println(players[currentPlayer].getName() + "'s points: " + players[currentPlayer].getPoints());
         }
 
-        System.out.println("The overall winner is: ");
+        System.out.print("The overall winner is ");
 
         for (int currentPlayer = 0; currentPlayer < howManyPlayers; currentPlayer++) {
             if (players[currentPlayer].getPoints() > top1) {

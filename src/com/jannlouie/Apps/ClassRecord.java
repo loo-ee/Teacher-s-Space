@@ -7,7 +7,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ClassRecord {
-    private static char action;
     private static final Scanner scanner = new Scanner(System.in);
 
     private static void displayMenu() {
@@ -17,13 +16,15 @@ public class ClassRecord {
     }
 
     public static void run() {
+        char action;
+
         do {
             displayMenu();
             System.out.print("Enter choice here: ");
-            ClassRecord.action = scanner.next().charAt(0);
+            action = scanner.next().charAt(0);
             scanner.nextLine();
 
-            switch (ClassRecord.action) {
+            switch (action) {
                 case '1' -> MainDatabase.addStudentToRoot();
                 case '2' -> MainDatabase.removeStudent();
                 case '3' -> {
@@ -46,6 +47,7 @@ public class ClassRecord {
                         luckyStudent = MainDatabase.getStudentInfo(name, id);
 
                         if (luckyStudent != null) {
+                            System.out.println("\n[SHOWING STUDENT DATA]");
                             luckyStudent.showStudentData();
                             repeat = false;
                         } else {
@@ -57,6 +59,6 @@ public class ClassRecord {
                 case '4' -> System.out.println("[INFO] Returning to main page");
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
-        } while (ClassRecord.action != '4');
+        } while (action != '4');
     }
 }

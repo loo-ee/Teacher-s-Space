@@ -6,7 +6,7 @@ public class Student extends HumanData {
     String course;
     int id;
     int yearLevel;
-    int grade;
+    float grade = 100;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -15,7 +15,7 @@ public class Student extends HumanData {
         this.id = id;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -27,23 +27,15 @@ public class Student extends HumanData {
         scanner.nextLine();
     }
 
-   public void addGrade(int grade) {
+   public void addGrade(float grade) {
         this.grade = (this.grade + grade) / 2;
-   }
-
-   public String getEmail() {
-        return this.email;
    }
 
    public int getId() {
         return this.id;
    }
 
-   public int age() {
-        return this.age;
-   }
-
-    public int getGrade() {
+    public float getGrade() {
         return this.grade;
     }
 

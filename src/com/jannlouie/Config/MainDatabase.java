@@ -1,22 +1,12 @@
 package com.jannlouie.Config;
 
-import com.jannlouie.FileHandling.Files;
-
-import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDatabase {
     private static LinkedList<Student> studentRootDirectory  = new LinkedList<>();
-
-    // TODO -> Delete LinkedList-Teacher if not needed
-    private static LinkedList<Teacher> teacherRootDirectory = new LinkedList<>();
-    private static Scanner scanner = new Scanner(System.in);
-    private static String dataBaseName;
     private static int currentStudentNumber = 0;
 
-     MainDatabase(String name) {
-        dataBaseName = name;
-    }
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void addStudentToRoot() {
         String name;
@@ -33,7 +23,6 @@ public class MainDatabase {
 
         Student newStudent = new Student(name, email, currentStudentNumber, age);
         studentRootDirectory.insertList(newStudent);
-
     }
 
     public static void addStudentToRoot(Student student) {
@@ -89,7 +78,8 @@ public class MainDatabase {
             for (int i=0; i<studentRootDirectory.getListSize(); i++) {
                 System.out.println("\n[Student #" + (i+1) + "]");
                 studentPtr = studentRootDirectory.returnNode(i);
-                studentPtr.showStudentData();
+                System.out.println("Name: \t" + studentPtr.getName());
+                System.out.println("ID: \t" + studentPtr.getId());
             }
         }
     }
@@ -100,52 +90,5 @@ public class MainDatabase {
 
     public static Student getStudent(int index) {
          return studentRootDirectory.returnNode(index);
-    }
-
-    public static void showTeachersDatabase() {
-        Teacher teacherPtr;
-
-        System.out.println("\n[TEACHERS' MAIN DATABASE]");
-
-        for (int i=0; i<teacherRootDirectory.getListSize(); i++) {
-            System.out.println("\n[Teacher #]" + (i+1) + "]");
-            teacherPtr = teacherRootDirectory.returnNode(i);
-            teacherPtr.showTeacherData();
-        }
-    }
-
-    public static void addTeacherToRoot() {
-        String name, email, subjectCourse;
-        int age;
-
-        System.out.print("\nEnter name of new teacher: ");
-        name = scanner.nextLine();
-        System.out.print("Enter email address of teacher " + name + ": ");
-        email = scanner.nextLine();
-        System.out.print("Enter age of teacher " + name + ": ");
-        age = Integer.parseInt(scanner.nextLine());
-        System.out.print("Enter assigned subject course of teacher " + name + ": ");
-        subjectCourse = scanner.nextLine();
-
-        Teacher newTeacher = new Teacher(name, age, email, subjectCourse);
-        teacherRootDirectory.insertList(newTeacher);
-    }
-
-    public static void removeTeacher() {
-        Teacher luckyTeacher;
-        String toStringEquivalent;
-
-        System.out.print("\nEnter name of teacher to remove: ");
-        toStringEquivalent = "Name: " + scanner.nextLine() + "\n";
-
-        if (teacherRootDirectory.validateNode(toStringEquivalent)) {
-            luckyTeacher = teacherRootDirectory.returnNode(toStringEquivalent);
-            teacherRootDirectory.deleteNode(luckyTeacher);
-        }
-    }
-    
-    public static void showTeachersDataBase() {
-        System.out.println("\n[STUDENTS' MAIN DATABASE]");
-        teacherRootDirectory.displayListContents();
     }
 }

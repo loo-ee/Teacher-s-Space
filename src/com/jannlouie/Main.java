@@ -1,10 +1,10 @@
 package com.jannlouie;
 
 import com.jannlouie.Apps.ClassRecord;
-import com.jannlouie.Apps.Games.BettingGame;
+import com.jannlouie.Apps.ClassRoom;
+import com.jannlouie.Apps.Games.BettingGame.BettingGame;
 import com.jannlouie.FileHandling.Login;
 import com.jannlouie.FileHandling.Files;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class Main {
 
             switch (choice) {
                 case '1' -> ClassRecord.run();
-                case '2' -> System.out.println("Not yet made");
+                case '2' -> ClassRoom.run();
                 case '3' -> playGames();
                 case '4' -> {
                     System.out.println("[INFO] Closing application");
@@ -31,6 +31,7 @@ public class Main {
                 }
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
+            System.out.println("___________________________________________________________");
         } while (choice != '4');
     }
 
