@@ -1,5 +1,8 @@
 package com.jannlouie.Config;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDatabase {
@@ -29,9 +32,11 @@ public class MainDatabase {
          studentRootDirectory.appendList(student);
     }
 
-    public static void removeStudent() {
+    public static void removeStudent() throws IOException {
         Student luckyStudent;
         String toStringEquivalent;
+        File file;
+        FileWriter fileWriter;
 
         showStudentsDatabase();
 
@@ -43,7 +48,20 @@ public class MainDatabase {
 
         if (studentRootDirectory.validateNode(toStringEquivalent)) {
             luckyStudent = studentRootDirectory.returnNode(toStringEquivalent);
+            file = new File("Database\\Students\\" + luckyStudent.getName() + ".txt");
+
+            if (file.isFile()) {
+                file.delete();
+            }
+
             studentRootDirectory.deleteNode(luckyStudent);
+            fileWriter = new FileWriter("Database\\student names.txt");
+
+            for (int i = 0; i < MainDatabase.getListSize(); i++) {
+                fileWriter.append(MainDatabase.getStudent(i).getName()).append("\n");
+            }
+
+            fileWriter.close();
             System.out.println("\n[INFO] Record deleted");
         } else {
             System.out.println("\n[INFO] Record not found");

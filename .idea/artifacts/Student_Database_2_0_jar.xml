@@ -2,7 +2,7 @@
   <artifact type="jar" name="Student-Database-2.0:jar">
     <output-path>$USER_HOME$/Desktop</output-path>
     <root id="archive" name="Student-Database-2.0.jar">
-      <element id="module-output" name="Student-Database-2.0" />
+      <element id="module-output" name="Teacher's Space" />
     </root>
   </artifact>
 </component>
