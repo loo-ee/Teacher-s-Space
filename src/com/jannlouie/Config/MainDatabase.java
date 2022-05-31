@@ -113,4 +113,8 @@ public class MainDatabase {
     public static boolean isListNull()  {
         return studentRootDirectory.checkIfNull();
     }
+
+    public static void deleteRecords() {
+        studentRootDirectory.clearList();
+    }
 }

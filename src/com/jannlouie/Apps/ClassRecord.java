@@ -2,6 +2,7 @@ package com.jannlouie.Apps;
 
 import com.jannlouie.Config.MainDatabase;
 import com.jannlouie.Config.Student;
+import com.jannlouie.FileHandling.Files;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -13,7 +14,7 @@ public class ClassRecord {
     private static void displayMenu() {
         System.out.println("\n[SELECT ACTION]");
         System.out.println("[1] Add student\n[2] Remove student\n[3] View student data");
-        System.out.println("[4] Delete all records\n[5] Return to previous stage");
+        System.out.println("[4] Delete all student records\n[5] Return to previous stage");
     }
 
     public static void run() throws IOException {
@@ -57,7 +58,13 @@ public class ClassRecord {
                         }
                     } while (repeat);
                 }
-                case '4' -> System.out.println("[INFO] Returning to main page");
+                case '4' -> {
+                    try {
+                        Files.clearAllStudentRecords();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 case '5' -> System.out.println("[INFO] Returning to main page");
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
