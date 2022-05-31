@@ -43,24 +43,6 @@ public class Files {
         fileWriter = new FileWriter("Database\\current student number.txt");
         fileWriter.write(String.valueOf(currentStudentNumber));
         fileWriter.close();
-
-        fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
-        fileWriter.write(String.valueOf(ClassRoom.getCurrentExamNumber()));
-        fileWriter.close();
-
-        for (int i = 0; i < ClassRoom.getRecordSize(); i++) {
-            Exam exam = ClassRoom.getExam(i);
-            Vector<Float> studentScores = exam.getStudentScoresRecord();
-            fileWriter = new FileWriter("Database\\Logs\\" + exam + ".txt");
-
-            fileWriter.append(String.valueOf(exam.getID())).append("\n");
-            fileWriter.append(String.valueOf(exam.getMaxScore())).append("\n");
-
-            for (int j = 0; j < exam.getRecordSize(); j++) {
-                fileWriter.append(String.valueOf(studentScores.get(j))).append("\n");
-            }
-            fileWriter.close();
-        }
     }
 
     public static void load() throws IOException {
@@ -99,14 +81,12 @@ public class Files {
             bufferedReader = new BufferedReader(fileReader);
 
             line = bufferedReader.readLine();
+            fileReader.close();
+            bufferedReader.close();
 
             if (Objects.equals(line, null)) {
                 return;
             }
-
-            fileReader.close();
-            bufferedReader.close();
-
             MainDatabase.setCurrentStudentNumber(Integer.parseInt(line));
 
             file = new File("Database\\Logs\\Current Exam Number.txt");
@@ -146,23 +126,31 @@ public class Files {
             }
 
             for (int i = 0; i < ClassRoom.getCurrentExamNumber(); i++) {
-                file = new File("Database\\Logs\\Exam #" + i + ".txt");
+                file = new File("Database\\Logs\\Exam #" + (i+1) + ".txt");
 
                 if (file.isFile()) {
                     fileReader = new FileReader(file);
                     bufferedReader = new BufferedReader(fileReader);
                     Vector<Float> studentScores = new Vector<>();
+                    Vector<String> studentNames = new Vector<>();
 
                     int ID = Integer.parseInt(bufferedReader.readLine());
                     float maxScore = Float.parseFloat(bufferedReader.readLine());
+                    int counter = 0;
 
                     while ((line = bufferedReader.readLine()) != null) {
-                        studentScores.add(Float.parseFloat(line));
+                        if (counter % 2 == 0) {
+                            studentNames.add(line);
+                        }
+                        else {
+                            studentScores.add(Float.parseFloat(line));
+                        }
+                        counter++;
                     }
 
                     Exam exam = new Exam(ID, maxScore);
-                    exam.setVector(studentScores);
-                    exam.setVector(studentScores);
+                    exam.setStudentNamesVector(studentNames);
+                    exam.setScoresVector(studentScores);
                     ClassRoom.addExam(exam);
                 }
             }
@@ -210,8 +198,74 @@ public class Files {
         }
     }
 
-    public static void deleteFiles() {
+    public static void clearAllStudentRecords() throws Exception {
         File file;
-        
+        FileWriter fileWriter;
+        Student student;
+
+        for (int i = 0; i < MainDatabase.getListSize(); i++) {
+            student = MainDatabase.getStudent(i);
+            file = new File("Database\\Students\\" + student.getName() + ".txt");
+
+            if (file.isFile()) {
+                file.delete();
+            }
+        }
+
+        fileWriter = new FileWriter("Database\\student names.txt");
+        fileWriter.close();
+
+        MainDatabase.deleteRecords();
+    }
+
+    public static void clearExamRecords() {
+
+    }
+
+    public static void addExamToLogs() throws Exception {
+        FileWriter fileWriter;
+        File file;
+
+        fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
+        fileWriter.write(String.valueOf(ClassRoom.getCurrentExamNumber()));
+        fileWriter.close();
+
+        for (int i = 0; i < ClassRoom.getRecordSize(); i++) {
+            Exam exam = ClassRoom.getExam(i);
+            Vector<Float> studentScores = exam.getStudentScoresRecord();
+            Vector<String> studentNames = exam.getStudentNamesRecord();
+            file = new File("Database\\Logs\\" + exam + ".txt");
+
+            if (!file.isFile()) {
+                fileWriter = new FileWriter(file);
+
+                fileWriter.append(String.valueOf(exam.getID())).append("\n");
+                fileWriter.append(String.valueOf(exam.getMaxScore())).append("\n");
+
+                for (int j = 0; j < exam.getRecordSize(); j++) {
+                    fileWriter.append(studentNames.get(j)).append("\n");
+                    fileWriter.append(String.valueOf(studentScores.get(j))).append("\n");
+                }
+                fileWriter.close();
+
+                fileWriter = new FileWriter("Database\\Logs\\Exam Logs.txt");
+                fileWriter.append(exam.toString());
+                fileWriter.close();
+            }
+        }
+    }
+
+    public static void loadExamInfo(Exam exam) {
+        Vector<String> studentNames = exam.getStudentNamesRecord();
+        Vector<Float> scores = exam.getStudentScoresRecord();
+
+        System.out.println("[DISPLAYING EXAM LOG #" + exam.getID() + "]");
+        System.out.println("Max Score Possible: " + exam.getMaxScore());
+        System.out.println("\n[Score]\t\t->[Name]");
+
+        for (int i = 0; i < studentNames.size(); i++) {
+            System.out.println(scores.get(i) + "\t->" + studentNames.get(i));
+        }
+        System.out.println("[END OF RECORD]");
     }
 }
