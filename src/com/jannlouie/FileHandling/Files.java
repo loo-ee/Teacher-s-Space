@@ -209,4 +209,9 @@ public class Files {
             e.printStackTrace();
         }
     }
+
+    public static void deleteFiles() {
+        File file;
+        
+    }
 }
