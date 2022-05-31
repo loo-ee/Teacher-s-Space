@@ -1,3 +1,3 @@
-# Student-Database-2.0
+# Teacher's Space
 
-#This is a test
+# Final project for COE 141
