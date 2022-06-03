@@ -109,7 +109,7 @@ public class ClassRoom {
         }
     }
 
-    public static void showExamLog() {
+    private static void showExamLog() {
         Exam exam;
         char choice;
 
@@ -153,7 +153,7 @@ public class ClassRoom {
         } while (true);
     }
 
-    public static void showStudentsGrades() {
+    private static void showStudentsGrades() {
         Student student;
 
         System.out.println("\n[ID]\t[Name]\t[Grade]");

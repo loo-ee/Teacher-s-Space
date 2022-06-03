@@ -65,6 +65,17 @@ public class Files {
             System.out.println("[INFO]");
         } else {
             String line;
+
+            file = new File("Database\\password.txt");
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            line = bufferedReader.readLine();
+            fileReader.close();
+            bufferedReader.close();
+
+            Login.setPassword(line);
+
             file = new File("Database\\student names.txt");
             fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
@@ -187,7 +198,8 @@ public class Files {
                 fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
                 fileWriter.close();
 
-                System.out.println("\n[Password is \"default\"]\n");
+                System.out.println("\n[Password is \"default\"]");
+                System.out.println("This message only shows up after first initialization of the app.\n");
             } else {
                 file = new File("Database\\password.txt");
                 FileReader fileReader = new FileReader(file);

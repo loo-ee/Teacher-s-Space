@@ -5,7 +5,11 @@ import com.jannlouie.Apps.ClassRoom;
 import com.jannlouie.Apps.Games.BettingGame.BettingGame;
 import com.jannlouie.FileHandling.Login;
 import com.jannlouie.FileHandling.Files;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -26,44 +30,76 @@ public class Main {
                 case '2' -> ClassRoom.run();
                 case '3' -> playGames();
                 case '4' -> {
-                    String password;
-                    int exitCode = 0;
-                    int counter = 0;
-
-                    while (true) {
-                        if (counter == 5) {
-                            System.out.println("\n[YOU HAVE BEEN BLOCKED]");
-                            System.exit(exitCode);
-                        }
-
-                        System.out.print("Enter password to reset program: ");
-                        password = scanner.nextLine();
-
-                        if (Login.validateLogin(password)) {
-                            if (Files.deleteAllFiles()) {
-                                System.exit(exitCode);
-                            }
-                            else {
-                                exitCode = 1;
-                            }
+                    if (confirmAdminAction()) {
+                        if (Files.deleteAllFiles()) {
+                            System.exit(0);
                         } else {
-                            System.out.println("\n[ERROR] You have entered an incorrect password");
-                            System.out.println("You have " + (4 - counter) + " tries left.");
+                            System.exit(1);
                         }
-                        counter++;
+                    } else {
+                        System.exit(1);
                     }
                 }
                 case '5' -> {
+                    String newPassword;
+                    String confirmPassword;
+
+                    if (confirmAdminAction()) {
+                        while (true) {
+                            System.out.print("\nEnter new password here: ");
+                            newPassword = scanner.nextLine();
+                            System.out.print("Confirm password here: ");
+                            confirmPassword = scanner.nextLine();
+
+                            if (Objects.equals(newPassword, confirmPassword)) {
+                                changePassword(newPassword);
+                                break;
+                            } else {
+                                System.out.println("[ERROR] Passwords do not match");
+                                System.out.println("Please try again");
+                            }
+                        }
+                    } else {
+                        System.exit(1);
+                    }
+                }
+                case '6' -> {
                     System.out.println("[INFO] Closing application");
                     Files.saveData();
                 }
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
             System.out.println("___________________________________________________________");
-        } while (choice != '5');
+        } while (choice != '6');
     }
 
-    public static void login() {
+    public static boolean confirmAdminAction() {
+        String password;
+        boolean isPermitted = false;
+        int counter = 0;
+
+        while (true) {
+            if (counter == 5) {
+                System.out.println("\n[YOU HAVE BEEN BLOCKED]");
+                break;
+            }
+
+            System.out.print("Enter password to continue: ");
+            password = scanner.nextLine();
+
+            if (Login.validateLogin(password)) {
+                isPermitted = true;
+                break;
+            } else {
+                System.out.println("\n[ERROR] You have entered an incorrect password");
+                System.out.println("You have " + (4 - counter) + " tries left.");
+            }
+            counter++;
+        }
+        return isPermitted;
+    }
+
+    private static void login() {
         String userInput;
         int counter = 0;
         boolean isVerified;
@@ -76,34 +112,20 @@ public class Main {
             e.printStackTrace();
         }
 
-        do {
-            if (counter == 5) {
-                System.out.println("[YOU HAVE BEEN BLOCKED!]");
-                System.exit(1);
-            }
-
-            System.out.print("Enter password here: ");
-            userInput = scanner.nextLine();
-
-            isVerified = Login.validateLogin(userInput);
-            counter++;
-
-            if (!isVerified) {
-                System.out.println("\n[INFO] You have entered an incorrect password");
-                System.out.println("You have " + (5 - counter) + " tries left.");
-            }
-        } while (!isVerified);
-
-        System.out.println("\n[LOGIN SUCCESS]");
+        if (confirmAdminAction()) {
+            System.out.println("\n[LOGIN SUCCESS]");
+        } else {
+            System.exit(1);
+        }
     }
 
     private static void showHomePage() {
         System.out.println("\n[SELECT ACTION]");
         System.out.println("[1] Open class record\n[2] Open classroom\n[3] Play games");
-        System.out.println("[4] Reset program\n[5] Exit program");
+        System.out.println("[4] Reset program\n[5] Change password\n[6] Exit program");
     }
 
-    public static void playGames() throws Exception {
+    private static void playGames() throws Exception {
         char gameChoice;
 
         do {
@@ -120,5 +142,16 @@ public class Main {
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
         } while (gameChoice != '4');
+    }
+
+    private static void changePassword(String newPassword) throws IOException {
+        FileWriter fileWriter;
+
+        fileWriter = new FileWriter("Database\\password.txt");
+        fileWriter.write(newPassword);
+        fileWriter.close();
+
+        Login.setPassword(newPassword);
+        System.out.println("\n[INFO] Password was changed successfully");
     }
 }

@@ -10,7 +10,7 @@ public class MainDatabase {
     private static LinkedList<Student> studentRootDirectory  = new LinkedList<>();
     private static int currentStudentNumber = 0;
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void addStudentToRoot() {
         String name;

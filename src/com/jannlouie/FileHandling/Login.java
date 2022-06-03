@@ -3,7 +3,7 @@ package com.jannlouie.FileHandling;
 import java.util.Objects;
 
 public class Login {
-    private static String password = "default";
+    private static String password;
 
     public static void setPassword(String password) {
         Login.password = password;
