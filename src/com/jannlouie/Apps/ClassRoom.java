@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ClassRoom {
     private static LinkedList<Exam> examLogs = new LinkedList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     private static int currentExamNumber;
 
@@ -26,7 +26,8 @@ public class ClassRoom {
                 case '1' -> giveTask();
                 case '2' -> assignScores();
                 case '3' -> showExamLog();
-                case '4' -> {
+                case '4' -> showStudentsGrades();
+                case '5' -> {
                     char deleteRecordsChoice;
 
                     System.out.println("\nPress [D] to delete all exam records\nPress any other key to return");
@@ -43,17 +44,18 @@ public class ClassRoom {
                     }
                     System.out.println("\n[INFO] Exam records were deleted successfully");
                 }
-                case '5' -> System.out.println("[Returning to previous page]");
+                case '6' -> System.out.println("[Returning to previous page]");
                 default -> System.out.println("[ERROR] You have entered an invalid input!");
             }
-        } while (choice != '5');
+        } while (choice != '6');
         System.out.println();
     }
 
     private static void displayMenu() {
         System.out.println("\n[SELECT ACTION]");
         System.out.println("[1] Give tasks\n[2] Assign scores\n[3] Show exam log");
-        System.out.println("[4] Clear all exam records\n[5] Return to previous stage");
+        System.out.println("[4] Show students' grades\n[5] Clear all exam records");
+        System.out.println("[6] Return to previous stage");
     }
 
     private static void giveTask() {
@@ -149,6 +151,22 @@ public class ClassRoom {
                 System.out.println("\n[ERROR] Record not found!");
             }
         } while (true);
+    }
+
+    public static void showStudentsGrades() {
+        Student student;
+
+        System.out.println("\n[ID]\t[Name]\t[Grade]");
+
+        for (int i = 0; i < MainDatabase.getListSize(); i++) {
+            student = MainDatabase.getStudent(i);
+            System.out.println(student.getId() + "\t\t" + student.getName() + "\t\t" + student.getGrade());
+        }
+
+        if (MainDatabase.isListNull()) {
+            System.out.println("List is empty!");
+        }
+        System.out.println("\n[END OF RECORD]");
     }
 
     public static void setCurrentExamNumber(int currentNumber) {

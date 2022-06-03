@@ -3,12 +3,12 @@ package com.jannlouie.Config;
 import java.util.Scanner;
 
 public class Student extends HumanData {
-    String course;
-    int id;
-    int yearLevel;
-    float grade = 100;
+    private String course;
+    private int id;
+    private int yearLevel;
+    private float grade = 100;
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public Student(String name, String email, int id, int age) {
         super(name, age, email);
@@ -46,6 +46,7 @@ public class Student extends HumanData {
         System.out.println("Email: \t" + this.email);
         System.out.println("Course: " + this.course);
         System.out.println("Year Level: " + this.yearLevel);
+        System.out.println("Grade: " + this.grade);
     }
 
     @Override

@@ -33,29 +33,31 @@ public class ClassRecord {
                     Student luckyStudent;
                     MainDatabase.showStudentsDatabase();
 
-                    do {
-                        System.out.println("\nPress [R] to return to previous page");
-                        System.out.print("Enter name of student: ");
-                        String name = scanner.nextLine();
+                    if (!MainDatabase.isListNull()) {
+                        do {
+                            System.out.println("\nPress [R] to return to previous page");
+                            System.out.print("Enter name of student: ");
+                            String name = scanner.nextLine();
 
-                        if (name.toLowerCase(Locale.ROOT).equals("r")) {
-                            System.out.println("\n[INFO] Returning to previous page");
-                            break;
-                        }
+                            if (name.toLowerCase(Locale.ROOT).equals("r")) {
+                                System.out.println("\n[INFO] Returning to previous page");
+                                break;
+                            }
 
-                        System.out.print("Enter id of student: ");
-                        int id = Integer.parseInt(scanner.nextLine());
-                        luckyStudent = MainDatabase.getStudentInfo(name, id);
+                            System.out.print("Enter id of student: ");
+                            int id = Integer.parseInt(scanner.nextLine());
+                            luckyStudent = MainDatabase.getStudentInfo(name, id);
 
-                        if (luckyStudent != null) {
-                            System.out.println("\n[SHOWING STUDENT DATA]");
-                            luckyStudent.showStudentData();
-                            repeat = false;
-                        } else {
-                            System.out.println("Try again...");
-                            repeat = true;
-                        }
-                    } while (repeat);
+                            if (luckyStudent != null) {
+                                System.out.println("\n[SHOWING STUDENT DATA]");
+                                luckyStudent.showStudentData();
+                                repeat = false;
+                            } else {
+                                System.out.println("Try again...");
+                                repeat = true;
+                            }
+                        } while (repeat);
+                    }
                 }
                 case '4' -> {
                     char choice;
@@ -68,12 +70,11 @@ public class ClassRecord {
                     if (choice == 'D' || choice == 'd') {
                         try {
                             Files.clearAllStudentRecords();
+                            System.out.println("\n[INFO] Records were deleted successfully");
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
                     }
-
-                    System.out.println("\n[INFO] Records were deleted successfully");
                     System.out.println("\n[INFO] Returning to previous page");
                 }
                 case '5' -> System.out.println("[INFO] Returning to main page");

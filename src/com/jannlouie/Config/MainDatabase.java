@@ -3,6 +3,7 @@ package com.jannlouie.Config;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MainDatabase {
@@ -40,11 +41,16 @@ public class MainDatabase {
 
         showStudentsDatabase();
 
-        System.out.print("\nEnter name of student to remove: ");
+        System.out.println("\nPress [R] to return to previous page");
+        System.out.print("Enter name of student to remove: ");
         String studentName = scanner.nextLine();
         System.out.print("Enter the ID of the student to remove: ");
         int studentID = Integer.parseInt(scanner.nextLine());
         toStringEquivalent = "Name: " + studentName + "\nID: " + studentID + "\n";
+
+        if (Objects.equals(studentName, "r") || Objects.equals(studentName, "R")) {
+            return;
+        }
 
         if (studentRootDirectory.validateNode(toStringEquivalent)) {
             luckyStudent = studentRootDirectory.returnNode(toStringEquivalent);

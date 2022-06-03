@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static char choice;
 
     public static void main(String[] args) throws Exception {
@@ -27,19 +27,30 @@ public class Main {
                 case '3' -> playGames();
                 case '4' -> {
                     String password;
-                    int exitCode;
+                    int exitCode = 0;
+                    int counter = 0;
 
-                    System.out.print("Enter password to reset program: ");
-                    password = scanner.nextLine();
+                    while (true) {
+                        if (counter == 5) {
+                            System.out.println("\n[YOU HAVE BEEN BLOCKED]");
+                            System.exit(exitCode);
+                        }
 
-                    if (Login.validateLogin(password)) {
-                        if (Files.deleteAllFiles()) {
-                            exitCode = 0;
+                        System.out.print("Enter password to reset program: ");
+                        password = scanner.nextLine();
+
+                        if (Login.validateLogin(password)) {
+                            if (Files.deleteAllFiles()) {
+                                System.exit(exitCode);
+                            }
+                            else {
+                                exitCode = 1;
+                            }
+                        } else {
+                            System.out.println("\n[ERROR] You have entered an incorrect password");
+                            System.out.println("You have " + (4 - counter) + " tries left.");
                         }
-                        else {
-                            exitCode = 1;
-                        }
-                        System.exit(exitCode);
+                        counter++;
                     }
                 }
                 case '5' -> {
@@ -78,7 +89,8 @@ public class Main {
             counter++;
 
             if (!isVerified) {
-                System.out.println("[INFO] You have entered an incorrect password\n");
+                System.out.println("\n[INFO] You have entered an incorrect password");
+                System.out.println("You have " + (5 - counter) + " tries left.");
             }
         } while (!isVerified);
 
