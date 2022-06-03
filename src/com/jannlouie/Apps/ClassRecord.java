@@ -3,7 +3,6 @@ package com.jannlouie.Apps;
 import com.jannlouie.Config.MainDatabase;
 import com.jannlouie.Config.Student;
 import com.jannlouie.FileHandling.Files;
-
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -59,11 +58,23 @@ public class ClassRecord {
                     } while (repeat);
                 }
                 case '4' -> {
-                    try {
-                        Files.clearAllStudentRecords();
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                    char choice;
+
+                    System.out.println("\nPress [D] to delete all student records\nPress any other key to return");
+                    System.out.print("Enter choice here: ");
+                    choice = scanner.next().charAt(0);
+                    scanner.nextLine();
+
+                    if (choice == 'D' || choice == 'd') {
+                        try {
+                            Files.clearAllStudentRecords();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
+
+                    System.out.println("\n[INFO] Records were deleted successfully");
+                    System.out.println("\n[INFO] Returning to previous page");
                 }
                 case '5' -> System.out.println("[INFO] Returning to main page");
                 default -> System.out.println("[INFO] You have entered an invalid choice");

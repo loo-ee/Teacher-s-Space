@@ -26,17 +26,34 @@ public class ClassRoom {
                 case '1' -> giveTask();
                 case '2' -> assignScores();
                 case '3' -> showExamLog();
-                case '4' -> System.out.println("[Returning to previous page]");
+                case '4' -> {
+                    char deleteRecordsChoice;
+
+                    System.out.println("\nPress [D] to delete all exam records\nPress any other key to return");
+                    System.out.print("Enter choice here: ");
+                    deleteRecordsChoice = scanner.next().charAt(0);
+                    scanner.nextLine();
+
+                    if (deleteRecordsChoice == 'D' || deleteRecordsChoice == 'd') {
+                        try {
+                            Files.clearExamRecords();
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    System.out.println("\n[INFO] Exam records were deleted successfully");
+                }
+                case '5' -> System.out.println("[Returning to previous page]");
                 default -> System.out.println("[ERROR] You have entered an invalid input!");
             }
-        } while (choice != '4');
+        } while (choice != '5');
         System.out.println();
     }
 
     private static void displayMenu() {
         System.out.println("\n[SELECT ACTION]");
         System.out.println("[1] Give tasks\n[2] Assign scores\n[3] Show exam log");
-        System.out.println("[4] Return to previous stage");
+        System.out.println("[4] Clear all exam records\n[5] Return to previous stage");
     }
 
     private static void giveTask() {
@@ -50,7 +67,7 @@ public class ClassRoom {
 
         while (true) {
             try {
-                System.out.print("Enter maximum score: ");
+                System.out.print("\nEnter maximum score: ");
                 maxScore = Float.parseFloat(scanner.nextLine());
                 break;
             } catch (NumberFormatException e) {
@@ -152,5 +169,10 @@ public class ClassRoom {
 
     public static void addExam(Exam exam) {
         examLogs.appendList(exam);
+    }
+
+    public static void clearRecords() {
+        examLogs.clearList();
+        currentExamNumber = 0;
     }
 }

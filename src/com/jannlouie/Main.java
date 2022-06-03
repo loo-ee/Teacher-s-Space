@@ -26,13 +26,30 @@ public class Main {
                 case '2' -> ClassRoom.run();
                 case '3' -> playGames();
                 case '4' -> {
+                    String password;
+                    int exitCode;
+
+                    System.out.print("Enter password to reset program: ");
+                    password = scanner.nextLine();
+
+                    if (Login.validateLogin(password)) {
+                        if (Files.deleteAllFiles()) {
+                            exitCode = 0;
+                        }
+                        else {
+                            exitCode = 1;
+                        }
+                        System.exit(exitCode);
+                    }
+                }
+                case '5' -> {
                     System.out.println("[INFO] Closing application");
                     Files.saveData();
                 }
                 default -> System.out.println("[INFO] You have entered an invalid choice");
             }
             System.out.println("___________________________________________________________");
-        } while (choice != '4');
+        } while (choice != '5');
     }
 
     public static void login() {
@@ -71,7 +88,7 @@ public class Main {
     private static void showHomePage() {
         System.out.println("\n[SELECT ACTION]");
         System.out.println("[1] Open class record\n[2] Open classroom\n[3] Play games");
-        System.out.println("[4] Exit application");
+        System.out.println("[4] Reset program\n[5] Exit program");
     }
 
     public static void playGames() throws Exception {

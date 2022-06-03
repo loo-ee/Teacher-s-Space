@@ -148,6 +148,9 @@ public class Files {
                         counter++;
                     }
 
+                    fileReader.close();
+                    bufferedReader.close();
+
                     Exam exam = new Exam(ID, maxScore);
                     exam.setStudentNamesVector(studentNames);
                     exam.setScoresVector(studentScores);
@@ -218,8 +221,25 @@ public class Files {
         MainDatabase.deleteRecords();
     }
 
-    public static void clearExamRecords() {
+    public static void clearExamRecords() throws Exception{
+        File file;
+        FileWriter fileWriter;
 
+        for (int i = 0; i < ClassRoom.getCurrentExamNumber(); i++) {
+            file = new File("Database\\Logs\\Exam #" + (i+1) + ".txt");
+            System.out.println(file);
+            if (file.isFile()) {
+                file.delete();
+            }
+        }
+
+        fileWriter = new FileWriter("Database\\Logs\\Exam Logs.txt");
+        fileWriter.close();
+
+        fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
+        fileWriter.close();
+
+        ClassRoom.clearRecords();
     }
 
     public static void addExamToLogs() throws Exception {
@@ -261,11 +281,50 @@ public class Files {
 
         System.out.println("[DISPLAYING EXAM LOG #" + exam.getID() + "]");
         System.out.println("Max Score Possible: " + exam.getMaxScore());
-        System.out.println("\n[Score]\t\t->[Name]");
+        System.out.println("\n[Score]\t[Name]");
 
         for (int i = 0; i < studentNames.size(); i++) {
-            System.out.println(scores.get(i) + "\t->" + studentNames.get(i));
+            System.out.println(scores.get(i) + "->\t" + studentNames.get(i));
         }
         System.out.println("[END OF RECORD]");
+    }
+
+    public static boolean deleteAllFiles() {
+        File file;
+        boolean isProgramReset = false;
+
+        try {
+            clearAllStudentRecords();
+            clearExamRecords();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        file = new File("Database\\verification.txt");
+
+        if (file.isFile()) {
+            file.delete();
+
+            file = new File("Database\\password.txt");
+            file.delete();
+
+            file = new File("Database\\Logs\\Current Exam Number.txt");
+            file.delete();
+
+            file = new File("Database\\Logs\\Exam Logs.txt");
+            file.delete();
+
+            file = new File("Database\\student names.txt");
+            file.delete();
+
+            file = new File("Database\\current student number.txt");
+            file.delete();
+
+            System.out.println("\n[INFO] Program was reset");
+            isProgramReset = true;
+        } else {
+            System.out.println("\n[INFO] Internal Error");
+        }
+        return isProgramReset;
     }
 }
