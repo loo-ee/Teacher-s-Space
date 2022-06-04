@@ -23,7 +23,7 @@ public class ClassRoom {
             scanner.nextLine();
 
             switch (choice) {
-                case '1' -> giveTask();
+                case '1' -> System.out.println("\n[INFO] Students are now doing their tasks...");
                 case '2' -> assignScores();
                 case '3' -> showExamLog();
                 case '4' -> showStudentsGrades();
@@ -56,10 +56,6 @@ public class ClassRoom {
         System.out.println("[1] Give tasks\n[2] Assign scores\n[3] Show exam log");
         System.out.println("[4] Show students' grades\n[5] Clear all exam records");
         System.out.println("[6] Return to previous stage");
-    }
-
-    private static void giveTask() {
-        System.out.println("[INFO] Students are now doing their tasks...");
     }
 
     private static void assignScores() {

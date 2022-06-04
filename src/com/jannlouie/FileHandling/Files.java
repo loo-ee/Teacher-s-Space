@@ -198,6 +198,7 @@ public class Files {
                 fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
                 fileWriter.close();
 
+                Login.setPassword("default");
                 System.out.println("\n[Password is \"default\"]");
                 System.out.println("This message only shows up after first initialization of the app.\n");
             } else {

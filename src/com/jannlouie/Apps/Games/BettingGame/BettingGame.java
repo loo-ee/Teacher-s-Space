@@ -1,5 +1,6 @@
 package com.jannlouie.Apps.Games.BettingGame;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -177,5 +178,25 @@ public class BettingGame {
 
     private static void showTutorial() {
 
+        System.out.println("\n[Betting Game Tutorial]");
+        System.out.println("\n[1] The game starts by asking information about the players.");
+        System.out.println("\t-> Enter the needed player information ");
+        System.out.println("[2] The game then asks for settings that the game will follow.");
+        System.out.println("\t-> Enter the settings you want to apply.");
+        System.out.println("[3] Game will now start the first round.");
+        System.out.println("\t-> Enter the choices of the players in each round");
+        System.out.println("\t-> The game will show results in each round");
+        System.out.print("\t-> After all the rounds, the game will then compute the final scores of");
+        System.out.print("each player.\n\t-> The game will then show who is the winner");
+        System.out.println("[4] The game will then ask if you want to play again using the previous settings");
+        System.out.println("\t-> Or you can choose to reset the settings or terminate the game.");
+        System.out.println("\nThat's it! Thank you for your time :>");
+        System.out.print("Press any key to continue....");
+
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
