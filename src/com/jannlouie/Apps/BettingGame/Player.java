@@ -1,4 +1,4 @@
-package com.jannlouie.Apps.Games.BettingGame;
+package com.jannlouie.Apps.BettingGame;
 
 import java.util.Scanner;
 

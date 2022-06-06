@@ -2,11 +2,10 @@ package com.jannlouie;
 
 import com.jannlouie.Apps.ClassRecord;
 import com.jannlouie.Apps.ClassRoom;
-import com.jannlouie.Apps.Games.BettingGame.BettingGame;
+import com.jannlouie.Apps.BettingGame.BettingGame;
 import com.jannlouie.FileHandling.Login;
 import com.jannlouie.FileHandling.Files;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
@@ -28,7 +27,7 @@ public class Main {
             switch (choice) {
                 case '1' -> ClassRecord.run();
                 case '2' -> ClassRoom.run();
-                case '3' -> playGames();
+                case '3' -> BettingGame.run(true);
                 case '4' -> {
                     if (confirmAdminAction()) {
                         if (Files.deleteAllFiles()) {
@@ -100,10 +99,6 @@ public class Main {
     }
 
     private static void login() {
-        String userInput;
-        int counter = 0;
-        boolean isVerified;
-
         System.out.println("TEACHER'S SPACE\n[ENTER PASSWORD]");
 
         try {
@@ -121,27 +116,8 @@ public class Main {
 
     private static void showHomePage() {
         System.out.println("\n[SELECT ACTION]");
-        System.out.println("[1] Open class record\n[2] Open classroom\n[3] Play games");
+        System.out.println("[1] Open class record\n[2] Open classroom\n[3] Play a game");
         System.out.println("[4] Reset program\n[5] Change password\n[6] Exit program");
-    }
-
-    private static void playGames() throws Exception {
-        char gameChoice;
-
-        do {
-            System.out.println("\n[SELECT ACTION]");
-            System.out.println("[1] Betting game\n[2] \n[3] ");
-            System.out.println("[4] Return to previous stage");
-            System.out.print("Enter the number of the game you want to play: ");
-            gameChoice = scanner.next().charAt(0);
-            scanner.nextLine();
-
-            switch (gameChoice) {
-                case '1' -> BettingGame.run(true);
-                case '4' -> System.out.println("[INFO] Returning to home page");
-                default -> System.out.println("[INFO] You have entered an invalid choice");
-            }
-        } while (gameChoice != '4');
     }
 
     private static void changePassword(String newPassword) throws IOException {

@@ -199,8 +199,9 @@ public class Files {
                 fileWriter.close();
 
                 Login.setPassword("default");
-                System.out.println("\n[Password is \"default\"]");
-                System.out.println("This message only shows up after first initialization of the app.\n");
+                System.out.println("\n[INFO] Password is \"default\"");
+                System.out.println("This message only shows up after first initialization of the app.");
+                System.out.println("You can change the password later.\n");
             } else {
                 file = new File("Database\\password.txt");
                 FileReader fileReader = new FileReader(file);

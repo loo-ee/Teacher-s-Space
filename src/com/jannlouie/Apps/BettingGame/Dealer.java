@@ -1,4 +1,4 @@
-package com.jannlouie.Apps.Games.BettingGame;
+package com.jannlouie.Apps.BettingGame;
 
 public class Dealer {
     private final Die die1 = new Die();
