@@ -20,16 +20,8 @@ public class Exam {
         this.studentNames = n;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public int getID() {
         return this.ID;
-    }
-
-    public void setMaxScore(float maxScore) {
-        this.maxScore = maxScore;
     }
 
     public void addStudentScore(float score) {
@@ -50,10 +42,6 @@ public class Exam {
 
     public Vector<String> getStudentNamesRecord() {
         return this.studentNames;
-    }
-
-    public float getStudentScore(int index) {
-        return studentScores.get(index);
     }
 
     public int getRecordSize() {

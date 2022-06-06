@@ -8,7 +8,7 @@ public class LinkedList<T> {
         private NodeList() {}
     }
 
-    private NodeList<T> head = new NodeList<>();
+    private NodeList<T> head;
 
     public LinkedList() {
         head = null;
@@ -58,31 +58,6 @@ public class LinkedList<T> {
             nodePtr = nodePtr.next;
         }
         return targetElement;
-    }
-
-    public void insertList(int index, T val) {
-        NodeList<T> nodePtr;
-        NodeList<T> previousNode;
-        NodeList<T> newNode = new NodeList<>();
-
-        newNode.element = val;
-        newNode.next = null;
-
-        nodePtr = head;
-        previousNode = null;
-
-        for (int i=0; i<index; i++) {
-            previousNode = nodePtr;
-            nodePtr = nodePtr.next;
-        }
-
-        if (previousNode == null) {
-            head = newNode;
-        }
-        else {
-            previousNode.next = newNode;
-        }
-        newNode.next = nodePtr;
     }
 
     public void insertList(T val) {

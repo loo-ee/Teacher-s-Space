@@ -1,12 +1,8 @@
 package com.jannlouie.Config;
 
-import java.util.Scanner;
-
 public class Student extends HumanData {
     private int id;
     private float grade = 100;
-
-    private Scanner scanner = new Scanner(System.in);
 
     public Student(String name, String email, int id, int age) {
         super(name, age, email);
