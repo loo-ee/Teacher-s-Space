@@ -29,6 +29,11 @@ public class Main {
                 case '2' -> ClassRoom.run();
                 case '3' -> BettingGame.run(true);
                 case '4' -> {
+                    /*
+                     In this method, the system verifies if the user is authorized to create admin
+                     actions. If so, the system tries to delete files and if successful, the system
+                     forcefully exits. Otherwise, the system will exit with an error code.
+                    */
                     if (confirmAdminAction()) {
                         if (Files.deleteAllFiles()) {
                             System.exit(0);

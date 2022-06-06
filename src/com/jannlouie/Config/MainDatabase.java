@@ -26,7 +26,7 @@ public class MainDatabase {
         currentStudentNumber++;
 
         Student newStudent = new Student(name, email, currentStudentNumber, age);
-        studentRootDirectory.insertList(newStudent);
+        studentRootDirectory.appendList(newStudent);
     }
 
     public static void addStudentToRoot(Student student) {

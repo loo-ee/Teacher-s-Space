@@ -60,6 +60,10 @@ public class LinkedList<T> {
         return targetElement;
     }
 
+    /*
+    This method is used to append the list alphabetically.
+    It breaks the program so it's not used.
+    */
     public void insertList(T val) {
         NodeList<T> nodePtr = head;
         NodeList<T> previousNode = null;
