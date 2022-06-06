@@ -83,6 +83,7 @@ public class MainDatabase {
     }
 
     public static Student getStudentInfo(String name, int id) {
+        // For explanation on how the 'returnNode()' method works -> look at the LinkedList class
          if (validateStudent("Name: "+ name+ "\nID: " + id + "\n")) {
             return studentRootDirectory.returnNode("Name: "+ name+ "\nID: " + id + "\n");
          }

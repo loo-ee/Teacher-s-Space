@@ -1,6 +1,11 @@
 package com.jannlouie.Config;
 
 public class LinkedList<T> {
+    /*
+    This class is an implementation of a linked list that uses a template
+    The data structure is somehow similar to the 'Vector' when creating an
+    instance
+    */
     private class NodeList<E> {
         private E element;
         private NodeList<E> next;
@@ -33,19 +38,11 @@ public class LinkedList<T> {
         }
     }
 
-    public T returnNode(int index) {
-        NodeList<T> nodePtr = head;
-        NodeList<T> previousNode = null;
-
-        for (int i = 0; i <index+1; i++) {
-            previousNode = nodePtr;
-            nodePtr = nodePtr.next;
-        }
-        assert previousNode != null;
-        return previousNode.element;
-    }
-
     public T returnNode(String toString) {
+        /*
+        This method receives a 'toString()' of the class T,
+        which in any case could be any class
+        */
         NodeList<T> nodePtr = head;
         T targetElement = null;
 
@@ -57,14 +54,34 @@ public class LinkedList<T> {
             }
             nodePtr = nodePtr.next;
         }
+
+        // The method then returns the class instance if found
         return targetElement;
     }
 
-    /*
-    This method is used to append the list alphabetically.
-    It breaks the program so it's not used.
-    */
+    public T returnNode(int index) {
+        /*
+        This method is the same as the previous but this one uses an index of int
+        This method is primarily used when a for loop is accessing the elements of
+        a list
+        */
+        NodeList<T> nodePtr = head;
+        NodeList<T> previousNode = null;
+
+        for (int i = 0; i <index+1; i++) {
+            previousNode = nodePtr;
+            nodePtr = nodePtr.next;
+        }
+
+        assert previousNode != null;
+        return previousNode.element;
+    }
+
     public void insertList(T val) {
+        /*
+        This method is used to append the list alphabetically.
+        It breaks the program so it's not used.
+        */
         NodeList<T> nodePtr = head;
         NodeList<T> previousNode = null;
         NodeList<T> newNode = new NodeList<>();
@@ -140,11 +157,16 @@ public class LinkedList<T> {
         else {
             nodePtr = head;
 
+            /*
+            The loop searches for the element that has the same 'toString()' value
+            with the given argument of class T
+            */
             while (nodePtr != null && nodePtr.element != val) {
                 previousNode = nodePtr;
                 nodePtr = nodePtr.next;
             }
-                
+
+            // If found, the method then deletes the node or the element
             if (nodePtr != null) {
                 previousNode.next = nodePtr.next;
             }
@@ -152,6 +174,10 @@ public class LinkedList<T> {
     }
 
     public boolean validateNode(String combination) {
+        /*
+        This method validates an element if it exists in the list
+        It then returns a boolean value
+        */
         NodeList<T> nodePtr = head;
 
         while (nodePtr != null) {
@@ -164,6 +190,7 @@ public class LinkedList<T> {
     }
 
     public void clearList() {
+        // This method traverses the list and deletes all the elements starting from the last
         NodeList<T> nodePtr = head;
 
         while (head != null) {
