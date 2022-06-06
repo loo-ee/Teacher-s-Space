@@ -241,7 +241,7 @@ public class Files {
 
         for (int i = 0; i < ClassRoom.getCurrentExamNumber(); i++) {
             file = new File("Database\\Logs\\Exam #" + (i+1) + ".txt");
-            System.out.println(file);
+
             if (file.isFile()) {
                 file.delete();
             }

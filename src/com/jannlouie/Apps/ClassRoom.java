@@ -63,6 +63,11 @@ public class ClassRoom {
         float maxScore;
         Student student;
 
+        if (MainDatabase.isListNull()) {
+            System.out.println("\n[INFO] There are no students, add students first");
+            return;
+        }
+
         while (true) {
             try {
                 System.out.print("\nEnter maximum score: ");
