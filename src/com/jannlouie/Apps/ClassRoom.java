@@ -165,7 +165,7 @@ public class ClassRoom {
         }
 
         if (MainDatabase.isListNull()) {
-            System.out.println("List is empty!");
+            System.out.println("\nList is empty!");
         }
         System.out.println("\n[END OF RECORD]");
     }

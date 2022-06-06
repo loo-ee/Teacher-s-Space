@@ -3,9 +3,7 @@ package com.jannlouie.Config;
 import java.util.Scanner;
 
 public class Student extends HumanData {
-    private String course;
     private int id;
-    private int yearLevel;
     private float grade = 100;
 
     private Scanner scanner = new Scanner(System.in);
@@ -17,14 +15,6 @@ public class Student extends HumanData {
 
     public void setGrade(float grade) {
         this.grade = grade;
-    }
-
-    public void setStudentInfo() {
-        System.out.print("\nEnter your course: ");
-        this.course = scanner.nextLine();
-        System.out.print("Enter your year level: ");
-        this.yearLevel = scanner.nextInt();
-        scanner.nextLine();
     }
 
    public void addGrade(float grade) {
@@ -44,8 +34,6 @@ public class Student extends HumanData {
         System.out.println("Age: \t" + this.age);
         System.out.println("ID: \t" + this.id);
         System.out.println("Email: \t" + this.email);
-        System.out.println("Course: " + this.course);
-        System.out.println("Year Level: " + this.yearLevel);
         System.out.println("Grade: " + this.grade);
     }
 

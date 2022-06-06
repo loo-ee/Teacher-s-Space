@@ -62,7 +62,6 @@ public class Files {
 
         if (!file.isFile()) {
             createFiles();
-            System.out.println("[INFO]");
         } else {
             String line;
 
@@ -196,6 +195,7 @@ public class Files {
                 fileWriter.close();
 
                 fileWriter = new FileWriter("Database\\Logs\\Current Exam Number.txt");
+                fileWriter.write("0");
                 fileWriter.close();
 
                 Login.setPassword("default");
