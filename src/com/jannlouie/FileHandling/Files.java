@@ -8,11 +8,11 @@ import java.io.*;
 import java.util.Objects;
 import java.util.Vector;
 
-/*
- This class is used for handling all file input and output
- as well as for data storage.
-* */
 public class Files {
+    /*
+    This class is used for handling all file input and output
+    as well as for data storage.
+    */
     private static Vector<String> students = new Vector<>();
     private static Vector<String> studentCredentials = new Vector<>();
 
