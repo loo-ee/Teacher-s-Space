@@ -10,7 +10,7 @@ import java.util.Vector;
 
 /*
  This class is used for handling all file input and output
- as well as for data storage
+ as well as for data storage.
 * */
 public class Files {
     private static Vector<String> students = new Vector<>();
@@ -24,10 +24,10 @@ public class Files {
             return;
         }
 
-        // Get the ID to be used by new users by retrieving the last Student ID in the list
+        // Get the ID to be used by new users by retrieving the last Student ID in the list.
         int currentStudentNumber = MainDatabase.getStudent(MainDatabase.getListSize() - 1).getId();
 
-        // Saves each Student instance to a file
+        // Saves each Student instance to a file.
         for (int i = 0; i < MainDatabase.getListSize(); i++) {
             student = MainDatabase.getStudent(i);
             fileWriter = new FileWriter("Database\\Students\\" + student.getName() + ".txt");
@@ -43,7 +43,7 @@ public class Files {
 
          /*
          Creates a file to store all the names of the students to be used for searching files
-         when the program loads again
+         when the program loads again.
         */
         fileWriter = new FileWriter("Database\\student names.txt");
 
@@ -72,14 +72,14 @@ public class Files {
         int age;
         float grade;
 
-        // Searches the files created in saveData() to load the information to the program
+        // Searches the files created in saveData() to load the information to the program.
         file = new File("Database\\verification.txt");
 
         if (!file.isFile()) {
-            // When the verification file is not found, the system creates files used for storage
+            // When the verification file is not found, the system creates files used for storage.
             createFiles();
         } else {
-            // When the verification file is found, the system loads all information to the program
+            // When the verification file is found, the system loads all information to the program.
             String line;
 
             file = new File("Database\\password.txt");

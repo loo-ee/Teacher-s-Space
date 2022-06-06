@@ -2,9 +2,9 @@ package com.jannlouie.Config;
 
 public class LinkedList<T> {
     /*
-    This class is an implementation of a linked list that uses a template
+    This class is an implementation of a linked list that uses a template.
     The data structure is somehow similar to the 'Vector' when creating an
-    instance
+    instance.
     */
     private class NodeList<E> {
         private E element;
@@ -41,7 +41,7 @@ public class LinkedList<T> {
     public T returnNode(String toString) {
         /*
         This method receives a 'toString()' of the class T,
-        which in any case could be any class
+        which in any case could be any class.
         */
         NodeList<T> nodePtr = head;
         T targetElement = null;
@@ -55,15 +55,15 @@ public class LinkedList<T> {
             nodePtr = nodePtr.next;
         }
 
-        // The method then returns the class instance if found
+        // The method then returns the class instance if found.
         return targetElement;
     }
 
     public T returnNode(int index) {
         /*
-        This method is the same as the previous but this one uses an index of int
+        This method is the same as the previous but this one uses an index of int.
         This method is primarily used when a for loop is accessing the elements of
-        a list
+        a list.
         */
         NodeList<T> nodePtr = head;
         NodeList<T> previousNode = null;
@@ -159,7 +159,7 @@ public class LinkedList<T> {
 
             /*
             The loop searches for the element that has the same 'toString()' value
-            with the given argument of class T
+            with the given argument of class T.
             */
             while (nodePtr != null && nodePtr.element != val) {
                 previousNode = nodePtr;
@@ -175,8 +175,8 @@ public class LinkedList<T> {
 
     public boolean validateNode(String combination) {
         /*
-        This method validates an element if it exists in the list
-        It then returns a boolean value
+        This method validates an element if it exists in the list.
+        It then returns a boolean value.
         */
         NodeList<T> nodePtr = head;
 
@@ -190,7 +190,7 @@ public class LinkedList<T> {
     }
 
     public void clearList() {
-        // This method traverses the list and deletes all the elements starting from the last
+        // This method traverses the list and deletes all the elements starting from the last.
         NodeList<T> nodePtr = head;
 
         while (head != null) {
