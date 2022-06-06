@@ -30,7 +30,7 @@ public class ClassRecord {
                 case '2' -> MainDatabase.removeStudent();
                 case '3' -> {
                     boolean repeat;
-                    Student luckyStudent;
+                    Student luckyStudent = null;
                     MainDatabase.showStudentsDatabase();
 
                     if (!MainDatabase.isListNull()) {
@@ -44,9 +44,13 @@ public class ClassRecord {
                                 break;
                             }
 
-                            System.out.print("Enter id of student: ");
-                            int id = Integer.parseInt(scanner.nextLine());
-                            luckyStudent = MainDatabase.getStudentInfo(name, id);
+                            try {
+                                System.out.print("Enter id of student: ");
+                                int id = Integer.parseInt(scanner.nextLine());
+                                luckyStudent = MainDatabase.getStudentInfo(name, id);
+                            } catch (Exception e) {
+                                System.out.println("\n[ERROR] You have entered an invalid input");
+                            }
 
                             if (luckyStudent != null) {
                                 System.out.println("\n[SHOWING STUDENT DATA]");
