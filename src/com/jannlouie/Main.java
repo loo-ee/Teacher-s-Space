@@ -5,7 +5,6 @@ import com.jannlouie.Apps.ClassRoom;
 import com.jannlouie.Apps.BettingGame.BettingGame;
 import com.jannlouie.FileHandling.Login;
 import com.jannlouie.FileHandling.Files;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
