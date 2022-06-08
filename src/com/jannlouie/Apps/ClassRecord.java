@@ -66,20 +66,24 @@ public class ClassRecord {
                 case '4' -> {
                     char choice;
 
-                    System.out.println("\nPress [D] to delete all student records\nPress any other key to return");
-                    System.out.print("Enter choice here: ");
-                    choice = scanner.next().charAt(0);
-                    scanner.nextLine();
+                    if (!MainDatabase.isListNull()) {
+                        System.out.println("\nPress [D] to delete all student records\nPress any other key to return");
+                        System.out.print("Enter choice here: ");
+                        choice = scanner.next().charAt(0);
+                        scanner.nextLine();
 
-                    if (choice == 'D' || choice == 'd') {
-                        try {
-                            Files.clearAllStudentRecords();
-                            System.out.println("\n[INFO] Records were deleted successfully");
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
+                        if (choice == 'D' || choice == 'd') {
+                            try {
+                                Files.clearAllStudentRecords();
+                                System.out.println("\n[INFO] Records were deleted successfully");
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                         }
+                    } else {
+                        System.out.println("\n[INFO] List is empty!");
                     }
-                    System.out.println("\n[INFO] Returning to previous page");
+                    System.out.println("[INFO] Returning to previous page");
                 }
                 case '5' -> System.out.println("[INFO] Returning to main page");
                 default -> System.out.println("[INFO] You have entered an invalid choice");

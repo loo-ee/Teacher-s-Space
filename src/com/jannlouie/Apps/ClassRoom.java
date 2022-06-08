@@ -53,7 +53,7 @@ public class ClassRoom {
 
     private static void displayMenu() {
         System.out.println("\n[SELECT ACTION]");
-        System.out.println("[1] Give tasks\n[2] Assign scores\n[3] Show exam log");
+        System.out.println("[1] Give tasks\n[2] Record exam\n[3] Show exam log");
         System.out.println("[4] Show students' grades\n[5] Clear all exam records");
         System.out.println("[6] Return to previous stage");
     }
@@ -113,6 +113,11 @@ public class ClassRoom {
     private static void showExamLog() {
         Exam exam;
         char choice;
+
+        if (examLogs.checkIfNull()) {
+            System.out.println("\n[INFO] List is empty");
+            return;
+        }
 
         do {
             System.out.println("[SHOWING ALL EXAM LOGS]");

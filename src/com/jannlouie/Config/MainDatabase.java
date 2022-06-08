@@ -13,20 +13,26 @@ public class MainDatabase {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void addStudentToRoot() {
-        String name;
-        String email;
-        int age;
+        String name = null;
+        String email = null;
+        int age = 0;
 
-        System.out.print("\nEnter name of student: ");
-        name = scanner.nextLine();
-        System.out.print("Enter email of student: ");
-        email = scanner.nextLine();
-        System.out.print("Enter age of student: ");
-        age = Integer.parseInt(scanner.nextLine());
-        currentStudentNumber++;
+        try {
+            System.out.print("\nEnter name of student: ");
+            name = scanner.nextLine();
+            System.out.print("Enter email of student: ");
+            email = scanner.nextLine();
+            System.out.print("Enter age of student: ");
+            age = Integer.parseInt(scanner.nextLine());
+            currentStudentNumber++;
 
-        Student newStudent = new Student(name, email, currentStudentNumber, age);
-        studentRootDirectory.appendList(newStudent);
+            Student newStudent = new Student(name, email, currentStudentNumber, age);
+            studentRootDirectory.appendList(newStudent);
+            System.out.println("\n[INFO] Student was registered");
+        } catch (Exception e) {
+            System.out.println("\n[ERROR] You have entered an invalid input");
+            System.out.println("Please try again");
+        }
     }
 
     public static void addStudentToRoot(Student student) {
